@@ -1,0 +1,28 @@
+{{ define "job" }}
+    <div class="p-2 m-2 center row "onclick="toggleExperience()">
+        {{ .CompanyName }}
+        {{ .Location }}
+        {{ .Title }}
+        <hr/>
+        {{ if .Experience }}
+        <div class="center row" id="experience-div" style="display:none;" >
+            {{ range .Experience }}
+            <ul class="p-1" style="list-style-type:circle;">
+                <li>{{ . }}</li>
+            </ul>
+            {{ end }}
+        </div>
+        {{ end }}
+    <script>
+        function toggleExperience(){
+            console.log("toggleExperience()");
+            const experienceDiv = document.getElementById("experience-div");
+            if(experienceDiv.style.display == "none"){
+                experienceDiv.style.display = "block"
+            } else {
+                experienceDiv.style.display = "none"
+            }
+        }
+    </script>
+    </div>
+{{ end }}

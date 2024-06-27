@@ -1,0 +1,13 @@
+{{ define "body" }}
+<div class="grid">
+    <div class="p-2 m-1 center row">
+        <h2>Work Experience</h2>
+    </div>
+    <hr/>
+    {{ range .Experience }}
+    <div class="center row">
+        {{ template "job" . }}
+    </div>
+    {{ end }}
+</div>
+{{ end }}
