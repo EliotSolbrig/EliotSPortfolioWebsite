@@ -13,6 +13,7 @@ type IDatabase interface{
     GetExperienceItemsByID(ctx context.Context, jobID int) ([]ExperienceItem, error)
     GetAllSchools(ctx context.Context) ([]*School, error)
     GetSchoolClassesFromSchoolID(ctx context.Context, schoolID int) ([]Class, error)
+    GetAllProjects(ctx context.Context) ([]*Project, error)
 }
 
 type Database struct {

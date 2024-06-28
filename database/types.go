@@ -40,3 +40,11 @@ type Class struct {
     Term string
     Credits int
 }
+
+type Project struct {
+    ID int
+    Name string
+    URL *string
+    GithubRepoURL *string
+    Description *string
+}

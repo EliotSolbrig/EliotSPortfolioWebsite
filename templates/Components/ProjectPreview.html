@@ -1,0 +1,15 @@
+{{ define "project" }}
+<div class="p-4 m-2 center row rounded-md outline outline-black w-full bg-sky-200">
+    <div class="center row">
+        <b>{{ .Name }}</b>
+    </div>
+    <div class="center row">
+        {{ .Description }}
+    </div>
+    {{ if .GithubRepoURL }}
+    <div class="center row">
+        <a href="{{ .GithubRepoURL }}">Github</a>
+    </div>
+    {{ end }}
+</div>
+{{ end }}

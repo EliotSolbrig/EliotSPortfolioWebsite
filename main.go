@@ -35,6 +35,7 @@ func main(){
     r.HandleFunc("/", router.IndexPage)
     r.HandleFunc("/workexperience", router.WorkExperiencePage)
     r.HandleFunc("/education", router.EducationPage)
+    r.HandleFunc("/projects", router.ProjectsPage)
 
     fmt.Println("\nListening on ", port)
     panic(http.ListenAndServe(":" + port, r))

@@ -10,6 +10,7 @@ type IService interface {
     GetExperienceItemsByID(ctx context.Context, jobID int) ([]database.ExperienceItem, error)
     GetAllSchools(ctx context.Context) ([]*database.School, error)
     GetSchoolClassesFromSchoolID(ctx context.Context, schoolID int) ([]database.Class, error)
+    GetAllProjects(ctx context.Context) ([]*database.Project, error)
 }
 
 type Service struct {
