@@ -2,51 +2,38 @@ package database
 
 import (
     "database/sql"
-    "os"
     "fmt"
-	_ "github.com/go-sql-driver/mysql"
-	"github.com/joho/godotenv"
+    "context"
+
+    _ "github.com/mattn/go-sqlite3"
 )
 
-type IDatabase interface {
-
+type IDatabase interface{
+    GetAllJobs(ctx context.Context) ([]Job, error)
+    GetExperienceItemsByID(ctx context.Context, jobID int) ([]ExperienceItem, error)
 }
 
 type Database struct {
-    DB *sql.DB
+	db *sql.DB
 }
 
 func NewDatabase(db *sql.DB) *Database {
-    return &Database{
-        DB: db,
-    }
+	return &Database{
+		db: db,
+	}
 }
 
 func GetDB() *sql.DB {
-	godotenv.Load()
-
-    var user, pwd, dbHost, dbPort, dbName string
-
-	// pwd := os.Getenv("Dconst B_PASSWORD")
-    if os.Getenv("ENV_TYPE") == "dev" {
-        pwd = ""
-        user = os.Getenv("DEV_DB_USER")
-        dbName = os.Getenv("DEV_DB_NAME")
-        dbHost = os.Getenv("DEV_DB_HOST")
-        dbPort = os.Getenv("DEV_DB_PORT")
-    } else {
-        pwd = os.Getenv("PROD_DB_PASSWORD")
-        user = os.Getenv("PROD_DB_USER")
-        dbName = os.Getenv("PROD_DB_NAME")
-        dbHost = os.Getenv("PROD_DB_HOST")
-        dbPort = os.Getenv("PROD_DB_PORT") }
-	fmt.Println("Connecting to")
-	fmt.Printf("%s:%s@tcp(%s:%s)/%s", user, pwd, dbHost, dbPort, dbName)
-
-	db, err := sql.Open("mysql", fmt.Sprintf("%s:%s@tcp(%s:%s)/%s", user, pwd, dbHost, dbPort, dbName))
-
-	if err != nil {
-		panic(err)
-	}
-	return db
+    fmt.Println("GetDB()")
+    // dbFile,err := os.Create("database.db")
+    // if err != nil {
+    //     panic(fmt.Errorf("Error creating sqlite database file: %s", err))
+    // }
+    // fmt.Println("dbFile: ", dbFile)
+    db,err := sql.Open("sqlite3", "./database.db")
+        if err != nil {
+            panic(fmt.Errorf("Error opening sqlite database in database.go: %s", err))
+    }
+    return db
 }
+
