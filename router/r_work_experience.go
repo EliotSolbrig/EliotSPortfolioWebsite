@@ -22,18 +22,32 @@ type ExperienceItem struct {
 func (router *Router) WorkExperiencePage(w http.ResponseWriter, r *http.Request) {
     fmt.Println("/workexperience")
 
-    takeda1 := Job {
-        Title: "Production Engineer",
-        CompanyName: "Takeda Pharmaceutical Company",
-        Location: "Social Circle, Georgia, USA",
-        Experience: []string{"Built/manage application in VBA which monitors process times in order to catch and correct process delays. Managed and facilitated user feedback to continuously improve the application","Reduced manufacturing events, user interventions, and batch record alerts","Troubleshooting of equipment, software, and process issues in GMP manufacturing facility for a batch biopharmaceutical process","Identified and developed opportunities to reduce cycle time, error proof operations, and eliminate waste.",},
-    }
+    // takeda1 := Job {
+    //     Title: "Production Engineer",
+    //     CompanyName: "Takeda Pharmaceutical Company",
+    //     Location: "Social Circle, Georgia, USA",
+    //     StartDate: "June 2022",
+    //     EndDate: "Current",
+    //     Experience: []string{"Built/manage application in VBA which monitors process times in order to catch and correct process delays. Managed and facilitated user feedback to continuously improve the application","Reduced manufacturing events, user interventions, and batch record alerts","Troubleshooting of equipment, software, and process issues in GMP manufacturing facility for a batch biopharmaceutical process","Identified and developed opportunities to reduce cycle time, error proof operations, and eliminate waste.",},
+    // }
+    //
+    // sde1 := Job {
+    //     Title: "Company Owner",
+    //     CompanyName: "SDE Technologies,
+    //
+    // }
+    //
+    // jobs := []Job{takeda1,}
 
-    jobs := []Job{takeda1,}
+    jobs,err := router.Service.GetAllJobs(r.Context())
+    if err != nil {
+        panic(fmt.Errorf("Error getting all jobs from db in r_work_experience.go: %s", err))
+    }
+    fmt.Println("jobs: ", jobs)
 
     templates := append([]string{"templates/Pages/WorkExperience.html","templates/Components/Job.html",},basePasefiles...)
     tmpl := template.Must(template.ParseFiles(templates...))
-    err := tmpl.ExecuteTemplate(w, "base", map[string]any{
+    err = tmpl.ExecuteTemplate(w, "base", map[string]any{
         "Experience": jobs,
     })
     if err != nil {

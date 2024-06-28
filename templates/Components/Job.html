@@ -1,22 +1,30 @@
 {{ define "job" }}
-    <div class="p-2 m-2 center row "onclick="toggleExperience()">
+<div class="p-2 m-2 center row "onclick="toggleExperience({{ .ID }})">
         {{ .CompanyName }}
         {{ .Location }}
         {{ .Title }}
+        <div class="center row">
+            {{ .StartDate }} - {{ .EndDate }} 
+        </div>
         <hr/>
-        {{ if .Experience }}
-        <div class="center row" id="experience-div" style="display:none;" >
-            {{ range .Experience }}
+        {{ if .ExperienceItems }}
+        <div class="center row" id="experience-div({{.ID}})" style="display:none;" >
+            {{ range .ExperienceItems }}
             <ul class="p-1" style="list-style-type:circle;">
-                <li>{{ . }}</li>
+                <li>{{ .Text }}</li>
             </ul>
             {{ end }}
+            <hr/>
         </div>
         {{ end }}
     <script>
-        function toggleExperience(){
-            console.log("toggleExperience()");
-            const experienceDiv = document.getElementById("experience-div");
+        function toggleExperience(jobID){
+            console.log("toggleExperience(jobID=", jobID, ")");
+            const experienceDiv = document.getElementById("experience-div(" + jobID + ")");
+            if(experienceDiv == null){
+                console.log("No experience div element found.");
+                return;
+            }
             if(experienceDiv.style.display == "none"){
                 experienceDiv.style.display = "block"
             } else {
