@@ -7,7 +7,7 @@ import (
 )
 
 func (router *Router) IndexPage(w http.ResponseWriter, r *http.Request){
-    templates := append([]string{"templates/index.html"}, basePasefiles...)
+    templates := append([]string{"templates/index.html","templates/Pages/HomePage.html",}, basePasefiles...)
 
     tmpl := template.Must(template.ParseFiles(templates...))
     err := tmpl.ExecuteTemplate(w, "base", map[string]any{
