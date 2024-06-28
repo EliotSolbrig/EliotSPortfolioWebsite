@@ -4,10 +4,26 @@
         <h4>Work Experience</h4>
     </div>
     <hr/>
-    {{ range .Experience }}
     <div class="center row">
-        {{ template "job" . }}
+        <div class="col">
+            Title
+        </div>
+        <div class="col">
+            Company
+        </div>
+        <div class="col">
+            Location
+        </div>
+        <div class="col">
+            Dates Employed
+        </div>
+        <div class="col">
+            Options
+        </div>
+        <hr/>
     </div>
+    {{ range .Experience }}
+    {{ template "job" . }}
     {{ end }}
 </div>
 {{ end }}

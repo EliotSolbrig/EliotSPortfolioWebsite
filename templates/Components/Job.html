@@ -1,36 +1,57 @@
 {{ define "job" }}
-<div class="p-2 m-2 center row "onclick="toggleExperience({{ .ID }})">
-        {{ .CompanyName }}
-        {{ .Location }}
+<div class="p-2 m-2 center row">
+    <div class="col">
         {{ .Title }}
-        <div class="center row">
-            {{ .StartDate }} - {{ .EndDate }} 
-        </div>
-        <hr/>
-        {{ if .ExperienceItems }}
-        <div class="center row" id="experience-div({{.ID}})" style="display:none;" >
-            {{ range .ExperienceItems }}
-            <ul class="p-1" style="list-style-type:circle;">
-                <li>{{ .Text }}</li>
-            </ul>
-            {{ end }}
-            <hr/>
-        </div>
+    </div>
+    <div class="col">
+        {{ .CompanyName }}
+    </div>
+    <div class="col">
+        {{ .Location }}
+    </div>
+    <div class="col">
+        {{ .StartDate }} - {{ .EndDate }} 
+    </div>
+    <div class="col" id="options-col-{{.ID}}">
+        <label class="hidden" style="display:block;" name="expandLabel({{.ID}})" id="expandLabel({{.ID}})" onclick="toggleExperience({{.ID}})" title="Click to view more">( + )</label>
+        <label class="hidden" style="display:none;" name="collapseLabel({{.ID}})" id="collapseLabel({{.ID}})" onclick="toggleExperience({{.ID}})" title="Click to view less">( - )</label>
+    </div>
+    <hr/>
+    {{ if .ExperienceItems }}
+    <div class="text-start row" id="experience-div({{.ID}})" style="display:none;" >
+        {{ range .ExperienceItems }}
+        <ul class="p-1 text-black" style="list-style-type:circle;">
+            <li>{{ .Text }}</li>
+        </ul>
         {{ end }}
+        <hr/>
+    </div>
+    {{ end }}
     <script>
         function toggleExperience(jobID){
             console.log("toggleExperience(jobID=", jobID, ")");
             const experienceDiv = document.getElementById("experience-div(" + jobID + ")");
+            let expandLabelElement = document.getElementById("expandLabel({{.ID}})");
+            expandLabelElement = document.querySelector("div.col label[name='expandLabel(" + jobID + ")']");
+            let collapseLabelElement = document.querySelector("div.col label[name='collapseLabel(" + jobID + ")']");
+            console.log("expandLabelElement: ", expandLabelElement);
+            console.log("collapseLabelelement: ", collapseLabelElement);
             if(experienceDiv == null){
                 console.log("No experience div element found.");
                 return;
             }
-            if(experienceDiv.style.display == "none"){
-                experienceDiv.style.display = "block"
+
+            // let expandText = document.createTextNode("test");
+            if(experienceDiv.style.display === "none"){
+                experienceDiv.style.display = "block";
+                expandLabelElement.style.display = "none";
+                collapseLabelElement.style.display = "block";
             } else {
                 experienceDiv.style.display = "none"
+                expandLabelElement.style.display = "block";
+                collapseLabelElement.style.display = "none";
             }
         }
     </script>
-    </div>
+</div>
 {{ end }}

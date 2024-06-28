@@ -58,7 +58,7 @@ WHERE
     A.id = B.Job_id AND 
     B.job_id = ?
 ORDER BY
-    B.id DESC
+    B.id ASC
 `
 
 func (database *Database) GetExperienceItemsByID(ctx context.Context, jobID int) ([]ExperienceItem, error) {
