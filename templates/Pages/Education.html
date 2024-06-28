@@ -1,0 +1,29 @@
+{{ define "body" }}
+<div class="grid h-full">
+    <div class="p-2 center row">
+        <h4>Education</h4>
+    </div>
+    <hr/>
+    <div class="p-1 center row">
+        <div class="col">
+            School
+        </div>
+        <div class="col">
+           Major 
+        </div>
+        <div class="col">
+            GPA/Transcript
+        </div>
+        <div class="col">
+            Graduation Status
+        </div>
+        <div class="col">
+            Options
+        </div>
+        <hr/>
+        {{ range .Data.Schools }}
+            {{ template "school" . }}
+            <hr/>
+        {{ end }}
+</div>
+{{ end }}

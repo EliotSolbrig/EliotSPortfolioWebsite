@@ -1,0 +1,74 @@
+{{ define "school" }}
+<div class="p-2 m-1 center row h-full" id="school-{{.ID}}">
+    <div class="col">
+        <div class="center row">
+            {{ .Name }}
+        </div>
+        <div class="center row">
+            <img src="{{.LogoPath}}" class="w-25 h-25">
+        </div>
+        <div class="center row">
+            {{ .Location }}
+        </div>
+    </div>
+    <div class="col">
+        {{ if .Major }}
+        {{ .Major }}
+        {{ else }}
+        N/A
+        {{ end }}
+    </div>
+    <div class="col">
+        <a href="{{.TranscriptPath}}" title="View Transcript">{{ .GPA }}</a>
+    </div>
+    <div class="col">
+        {{ if .Graduated }}
+        Graduated
+        {{ else }}
+        Transferred
+        {{ end }}
+    </div>
+    <div class="col">
+        {{ if .Classes }}
+        <button
+            class="outline-solid outline-black"
+            onclick="toggleClasses({{.ID}})"
+            >
+            View Class Details
+        </button>
+            {{ end }}
+    </div>
+    <div style="display:none;" class="text-black row" name="classes-row-{{.ID}}" id="classes-row-{{.ID}}">
+        {{ if .Classes }}
+        <div class="center row">
+            <div class="col">
+                Class
+            </div>
+            <div class="col">
+                Term
+            </div>
+            <div class="col">
+                Grade
+            </div>
+        </div>
+        {{ end }}
+        {{ range .Classes }}
+        <hr/>
+        {{ template "class" . }}
+        {{ end }}
+    </div>
+</div>
+<script>
+    function toggleClasses(id){
+        console.log("toggleClasses(id=", id, ")");
+        // let classRowElement = document.querySelector("div[name='classes-row-{{.ID}}']");
+        const classRowElement = document.getElementById("classes-row-" + id);
+        console.log(classRowElement);
+        if(classRowElement.style.display === "none"){
+            classRowElement.style.display = "block";
+        } else {
+            classRowElement.style.display = "none";
+        }
+    }
+</script>
+{{ end }}

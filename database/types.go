@@ -16,3 +16,27 @@ type ExperienceItem struct {
     Text string
 }
 
+type School struct {
+    ID int
+    Name string
+    Major *string
+    Graduated int
+    Degree *string
+    SchoolName *string
+    SchoolTypeID int
+    GPA float64
+    Location string
+    TranscriptPath string
+    LogoPath string
+    Classes []Class
+}
+
+type Class struct {
+    ID int
+    SchoolID int
+    Abbreviation string
+    Name string
+    Grade string
+    Term string
+    Credits int
+}

@@ -11,6 +11,8 @@ import (
 type IDatabase interface{
     GetAllJobs(ctx context.Context) ([]Job, error)
     GetExperienceItemsByID(ctx context.Context, jobID int) ([]ExperienceItem, error)
+    GetAllSchools(ctx context.Context) ([]*School, error)
+    GetSchoolClassesFromSchoolID(ctx context.Context, schoolID int) ([]Class, error)
 }
 
 type Database struct {

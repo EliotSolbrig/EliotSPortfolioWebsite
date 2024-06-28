@@ -8,6 +8,8 @@ import (
 type IService interface {
     GetAllJobs(ctx context.Context) ([]database.Job, error)
     GetExperienceItemsByID(ctx context.Context, jobID int) ([]database.ExperienceItem, error)
+    GetAllSchools(ctx context.Context) ([]*database.School, error)
+    GetSchoolClassesFromSchoolID(ctx context.Context, schoolID int) ([]database.Class, error)
 }
 
 type Service struct {
