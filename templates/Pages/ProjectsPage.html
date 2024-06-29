@@ -1,0 +1,55 @@
+{{ define "projectpage" }}
+    <div class="p-2 center row">
+        <h4>Projects</h4>
+    </div>
+    <input id="project-type" name="project-type" style="display:none;" class="hidden" value="0"/>
+    <div class="p-2 m-1 center row outline">
+        <div class="center row">
+            Select Project Type
+            <hr/>
+        </div>
+        <div
+            onclick="setProjectType(0)"
+            hx-post="/projectpage"
+            hx-include="#project-type"
+            hx-swap="innerHTML"
+            hx-target="#project-page-div"
+            class="col"
+            >
+            All
+        </div>
+        <div
+            onclick="setProjectType(1)"
+            hx-post="/projectpage"
+            hx-include="#project-type"
+            hx-swap="innerHTML"
+            hx-target="#project-page-div"
+            class="col"
+            >
+            Software
+        </div>
+        <div
+            onclick="setProjectType(2)"
+            hx-post="/projectpage"
+            hx-include="#project-type"
+            hx-swap="innerHTML"
+            hx-target="#project-page-div"
+            class="col"
+            >
+            Engineering
+        </div>
+    </div>
+    <hr/>
+    {{ range .Projects }}
+        {{ template "project" . }}
+    {{ end }}
+    <script>
+        function setProjectType(typeID){
+            console.log("setProjectType(typeID=", typeID, ")");
+            const projectTypeInput = document.getElementById("project-type");
+            console.log(projectTypeInput);
+            projectTypeInput.value = typeID;
+            console.log(projectTypeInput);
+        }
+    </script>
+{{ end }}
