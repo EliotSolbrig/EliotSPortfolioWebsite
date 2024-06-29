@@ -49,7 +49,8 @@ SELECT
     A.project_id,
     A.image_link,
     A.caption,
-    A.alt_link
+    A.alt_link,
+    A.image_is_video
 FROM
     project_images A,
     projects B
@@ -74,6 +75,7 @@ func (database *Database) GetProjectImagesFromID(ctx context.Context, projectID 
             &image.ImageLink,
             &image.Caption,
             &image.AltLink,
+            &image.ImageIsVideo,
         )
         images = append(images, &image)
     }

@@ -56,4 +56,5 @@ type ProjectImage struct {
     ImageLink string
     Caption string
     AltLink string
+    ImageIsVideo int
 }

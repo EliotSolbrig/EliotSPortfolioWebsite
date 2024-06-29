@@ -32,17 +32,29 @@
                     {{ if .AltLink }}
                         href="{{ .AltLink }}"
                     {{ else }}
-                        href="{{ .ImageLink }}"
+                    {{ if eq .ImageIsVideo 0 }}
+                    href="{{ .ImageLink }}"
+                    {{ end }}
                     {{ end }}
                     >
+                    {{ if eq .ImageIsVideo 0 }}
                     <img src="{{ .ImageLink }}">
+                    {{ else }}
+                    {{ if .AltLink }}
+                    <div class="h-full">
+                        <video controls>
+                            <source src="{{ .AltLink }}" type="video/mp4">
+                        </video>
+                    </div>
+                        {{ end }}
+                        {{ end }}
                 </a>
             </div>
         </div>
         {{ end }}
         <div class="center row">
             {{ range .ProjectImages }}
-            <div class="col">
+            <div class="center col">
                 {{ if .Caption }}
                 {{ .Caption }}
                 {{ end }}
