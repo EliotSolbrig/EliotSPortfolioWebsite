@@ -47,7 +47,7 @@ type Project struct {
     URL *string
     GithubRepoURL *string
     Description *string
-    ProjectImages []ProjectImage
+    ProjectImages []*ProjectImage
 }
 
 type ProjectImage struct {

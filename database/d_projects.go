@@ -60,8 +60,8 @@ ORDER BY
     A.id ASC
 `
 
-func (database *Database) GetProjectImagesFromID(ctx context.Context, projectID int) ([]ProjectImage, error) {
-    images := []ProjectImage{}
+func (database *Database) GetProjectImagesFromID(ctx context.Context, projectID int) ([]*ProjectImage, error) {
+    images := []*ProjectImage{}
     res,err := database.db.QueryContext(ctx, getProjectImagesFromIDQuery, projectID)
     if err != nil {
         return images, fmt.Errorf("Error querying getProjectImagesFromIDQuery in d_projects.go: %s", err)
@@ -75,7 +75,7 @@ func (database *Database) GetProjectImagesFromID(ctx context.Context, projectID 
             &image.Caption,
             &image.AltLink,
         )
-        images = append(images, image)
+        images = append(images, &image)
     }
     return images, nil
 }

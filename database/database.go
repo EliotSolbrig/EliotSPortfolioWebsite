@@ -14,7 +14,7 @@ type IDatabase interface{
     GetAllSchools(ctx context.Context) ([]*School, error)
     GetSchoolClassesFromSchoolID(ctx context.Context, schoolID int) ([]Class, error)
     GetAllProjects(ctx context.Context) ([]*Project, error)
-    GetProjectImagesFromID(ctx context.Context, projectID int) ([]ProjectImage, error)
+    GetProjectImagesFromID(ctx context.Context, projectID int) ([]*ProjectImage, error)
 }
 
 type Database struct {

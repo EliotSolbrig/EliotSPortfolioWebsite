@@ -11,7 +11,7 @@ type IService interface {
     GetAllSchools(ctx context.Context) ([]*database.School, error)
     GetSchoolClassesFromSchoolID(ctx context.Context, schoolID int) ([]database.Class, error)
     GetAllProjects(ctx context.Context) ([]*database.Project, error)
-    GetProjectImagesFromID(ctx context.Context, projectID int) ([]database.ProjectImage, error)
+    GetProjectImagesFromID(ctx context.Context, projectID int) ([]*database.ProjectImage, error)
 }
 
 type Service struct {
