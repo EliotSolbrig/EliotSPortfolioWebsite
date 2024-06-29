@@ -13,8 +13,9 @@ type IDatabase interface{
     GetExperienceItemsByID(ctx context.Context, jobID int) ([]ExperienceItem, error)
     GetAllSchools(ctx context.Context) ([]*School, error)
     GetSchoolClassesFromSchoolID(ctx context.Context, schoolID int) ([]Class, error)
-    GetAllProjects(ctx context.Context) ([]*Project, error)
+    GetAllProjects(ctx context.Context, typeID int) ([]*Project, error)
     GetProjectImagesFromID(ctx context.Context, projectID int) ([]*ProjectImage, error)
+    GetProjectTypeFromID(ctx context.Context, typeID int) (*ProjectType, error)
 }
 
 type Database struct {

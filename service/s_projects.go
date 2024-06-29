@@ -5,8 +5,8 @@ import (
     "main/database"
 )
 
-func (service *Service) GetAllProjects(ctx context.Context) ([]*database.Project, error) {
-   projects, err := service.Database.GetAllProjects(ctx)
+func (service *Service) GetAllProjects(ctx context.Context, typeID int) ([]*database.Project, error) {
+   projects, err := service.Database.GetAllProjects(ctx, typeID)
    if err != nil {
        return []*database.Project{}, err
    }
@@ -22,4 +22,12 @@ func (service *Service) GetProjectImagesFromID(ctx context.Context, projectID in
     return images, nil
 
 
+}
+
+func (service *Service) GetProjectTypeFromID(ctx context.Context, typeID int) (*database.ProjectType, error) {
+    projectType,err := service.Database.GetProjectTypeFromID(ctx, typeID)
+    if err != nil {
+        return &database.ProjectType{}, err
+    }
+    return projectType, nil
 }
