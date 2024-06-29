@@ -54,4 +54,6 @@ type ProjectImage struct {
     ID int
     ProjectID int
     ImageLink string
+    Caption string
+    AltLink string
 }

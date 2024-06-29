@@ -1,14 +1,54 @@
 {{ define "project" }}
 <div class="p-4 m-2 center row rounded-md outline outline-black w-full bg-sky-200">
     <div class="center row">
-        <b>{{ .Name }}</b>
+        {{ if .GithubRepoURL }}
+        <div class="col">
+            {{ end }}
+            {{ if .URL }}
+            <a href="{{ .URL }}">
+                {{ end }}
+            <b>{{ .Name }}</b>
+            {{ if .URL }}
+            </a>
+                {{ end }}
+            {{ if .GithubRepoURL }}
+        </div>
+        {{ end }}
+        {{ if .GithubRepoURL }}
+        <div class="col">
+            <a href="{{ .GithubRepoURL }}">Github</a>
+        </div>
+        {{ end }}
     </div>
-    <div class="center row">
+    <div class="p-2 m-1 center row">
         {{ .Description }}
     </div>
-    {{ if .GithubRepoURL }}
-    <div class="center row">
-        <a href="{{ .GithubRepoURL }}">Github</a>
+    {{ if .ProjectImages }}
+    <div class="p-1 m-1 align-middle center row">
+        {{ range .ProjectImages }}
+        <div class="center col">
+            <div class="center row">
+                <a
+                    {{ if .AltLink }}
+                        href="{{ .AltLink }}"
+                    {{ else }}
+                        href="{{ .ImageLink }}"
+                    {{ end }}
+                    >
+                    <img src="{{ .ImageLink }}">
+                </a>
+            </div>
+        </div>
+        {{ end }}
+        <div class="center row">
+            {{ range .ProjectImages }}
+            <div class="col">
+                {{ if .Caption }}
+                {{ .Caption }}
+                {{ end }}
+            </div>
+            {{ end }}
+        </div>
     </div>
     {{ end }}
 </div>

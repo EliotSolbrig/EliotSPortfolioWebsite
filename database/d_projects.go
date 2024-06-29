@@ -33,6 +33,11 @@ func (database *Database) GetAllProjects(ctx context.Context) ([]*Project, error
             &project.GithubRepoURL,
             &project.Description,
         )
+        images,err := database.GetProjectImagesFromID(ctx, project.ID)
+        if err != nil {
+            fmt.Println(fmt.Errorf("Error getting project images from id for %s: %s", project, err))
+        }
+        project.ProjectImages = images
         projects = append(projects, &project)
     }
     return projects, nil
@@ -42,7 +47,9 @@ const getProjectImagesFromIDQuery = `
 SELECT
     A.id,
     A.project_id,
-    A.image_link
+    A.image_link,
+    A.caption,
+    A.alt_link
 FROM
     project_images A,
     projects B
@@ -50,7 +57,7 @@ WHERE
    B.id = A.project_id AND
    B.id = ?
 ORDER BY
-    A.id DESC
+    A.id ASC
 `
 
 func (database *Database) GetProjectImagesFromID(ctx context.Context, projectID int) ([]ProjectImage, error) {
@@ -65,6 +72,8 @@ func (database *Database) GetProjectImagesFromID(ctx context.Context, projectID 
             &image.ID,
             &image.ProjectID,
             &image.ImageLink,
+            &image.Caption,
+            &image.AltLink,
         )
         images = append(images, image)
     }

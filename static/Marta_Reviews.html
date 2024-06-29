@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="Marta%20Reviews_files/css2.css" rel="stylesheet">
+    <script src="Marta%20Reviews_files/chart.js"></script>
+    <title>Marta Reviews</title>
+</head>
+
+<body>
+    <div class="header">
+        <div class="title">MARTA Reviews</div>
+        <img src="Marta%20Reviews_files/marta_logo.png">
+    </div>
+    <div class="title-divider">
+    <div class="title-cards">
+        <div class="card">
+            <div class="card-heading">Number Of Monthly MARTA Rides:</div>
+            <div class="card-emphasized-content">10,750,000</div>
+        </div>
+        <div class="card">
+            <div class="card-heading">Total Number of Reviews Collected:</div>
+            <div class="card-emphasized-content">94</div>
+        </div>
+        <div class="card">
+            <div class="card-heading">Most Popular Issue:</div>
+            <div class="card-emphasized-content">Cleanliness</div>
+        </div>
+    </div>
+    <div class="middle-cards">
+        <div class="card">
+            <div class="card-heading">Topics Mentioned</div>
+            <canvas id="pie-chart" style="display: block; box-sizing: border-box; height: 482px; width: 437px;" width="437" height="482"></canvas>
+        </div>
+        <div class="rating-card">
+            <div class="card-heading">Overall Rating</div>
+            <div class="five-star-rating"><img src="Marta%20Reviews_files/star-filled.svg">
+                <img src="Marta%20Reviews_files/star-filled.svg">
+                <img src="Marta%20Reviews_files/star-filled.svg">
+                <img src="Marta%20Reviews_files/star-partial.svg">
+                <img src="Marta%20Reviews_files/star-empty.svg">
+                
+            </div>
+            <div class="card-heading">Reviews by star</div>
+            <div class="reviews-by-star">
+                <div>
+                    <img src="Marta%20Reviews_files/star-partial.svg">
+                    <img src="Marta%20Reviews_files/star-empty.svg">
+                    <img src="Marta%20Reviews_files/star-empty.svg">
+                    <img src="Marta%20Reviews_files/star-empty.svg">
+                    <img src="Marta%20Reviews_files/star-empty.svg">
+                    <div>24</div>
+                </div>
+                <div>
+                    <img src="Marta%20Reviews_files/star-filled.svg">
+                    <img src="Marta%20Reviews_files/star-partial.svg">
+                    <img src="Marta%20Reviews_files/star-empty.svg">
+                    <img src="Marta%20Reviews_files/star-empty.svg">
+                    <img src="Marta%20Reviews_files/star-empty.svg">
+                    <div>5</div>
+                </div>
+                <div>
+                    <img src="Marta%20Reviews_files/star-filled.svg">
+                    <img src="Marta%20Reviews_files/star-filled.svg">
+                    <img src="Marta%20Reviews_files/star-partial.svg">
+                    <img src="Marta%20Reviews_files/star-empty.svg">
+                    <img src="Marta%20Reviews_files/star-empty.svg">
+                    <div>17</div>
+                </div>
+                <div>
+                    <img src="Marta%20Reviews_files/star-filled.svg">
+                    <img src="Marta%20Reviews_files/star-filled.svg">
+                    <img src="Marta%20Reviews_files/star-filled.svg">
+                    <img src="Marta%20Reviews_files/star-partial.svg">
+                    <img src="Marta%20Reviews_files/star-empty.svg">
+                    <div>6</div>
+                </div>
+                <div>
+                    <img src="Marta%20Reviews_files/star-filled.svg">
+                    <img src="Marta%20Reviews_files/star-filled.svg">
+                    <img src="Marta%20Reviews_files/star-filled.svg">
+                    <img src="Marta%20Reviews_files/star-filled.svg">
+                    <img src="Marta%20Reviews_files/star-partial.svg">
+                    <div>43</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bottom-bar-chart">
+        <div class="card-heading">Opinions of Topics</div>
+        <canvas id="stacked-bar-chart" style="display: block; box-sizing: border-box; height: 392px; width: 785px;" width="785" height="392"></canvas>
+    </div>
+    </div>
+
+<style>
+    .header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .title {
+        font-weight: bold;
+        font-size: 3rem;
+    }
+
+    .header img {
+        height: 3rem;
+    }
+
+    body {
+        font-family: "Inter", sans-serif;
+        margin: 1rem;
+    }
+
+    .title-divider {
+        background-color: #0072CE;
+        width: full;
+        height: .2rem;
+        border-radius: .5rem;
+        border: 100%;
+    }
+
+    .title-cards {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        padding: 2rem 0;
+        height: 8rem;
+    }
+
+    .middle-cards {
+        display: flex;
+        flex-direction: row;
+        padding: 2rem 0;
+        gap: 1rem;
+    }
+
+    .rating-card {
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.1), 0 3px 10px 0 rgba(0, 0, 0, 0.05);
+        border-radius: .5rem;
+        background-color: #F8F0F8;
+        padding: 1rem;
+        width: 35rem;
+        min-height: 7rem;
+    }
+    .bottom-bar-chart {
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.1), 0 3px 10px 0 rgba(0, 0, 0, 0.05);
+        border-radius: .5rem;
+        background-color: #F8F0F8;
+        padding: 1rem;
+        min-height: 7rem;
+    }
+
+    .card {
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.1), 0 3px 10px 0 rgba(0, 0, 0, 0.05);
+        border-radius: .5rem;
+        background-color: #F8F0F8;
+        padding: 1rem;
+        width: 100%;
+        min-height: 7rem;
+    }
+
+    .card-heading {
+        font-size: 1.2rem;
+        padding-bottom: .5rem;
+        font-weight: 500;
+    }
+
+    .card-emphasized-content {
+        font-size: 2rem;
+        font-weight: 600;
+    }
+
+    .five-star-rating {
+        svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        padding-bottom: 2rem;
+
+    }
+
+    .full-star {
+        fill: #FFB800
+    }
+
+    .partial-star {
+        fill: #FFB80040;
+
+    }
+
+    .empty-star {
+        fill: #D9D9D9;
+    }
+
+    .reviews-by-star div {
+        display: flex;
+        flex-direction: row;
+        justify-items: start;
+        font-size: 1.1rem;
+        padding: .2rem .5rem
+    }
+
+    #pie-chart {
+        height: 450px !important;
+        width: 100% !important;
+    }
+</style>
+
+<script>
+
+const primaryBlue = "#0072CE";
+const lightBlue = "#66B2FF"; 
+const darkBlue = "#004C99"; 
+
+const primaryGold = "#FDB813";
+const lightGold = "#FFDA66"; 
+const darkGold = "#CC9E00"; 
+
+const primaryRed = "#E64345";
+const lightRed = "#FF8888"; 
+const darkRed = "#B20000"; 
+
+const positive = "#00A651"; 
+const mixed = "#FFA500"; 
+const negative = "#D32F2F"; 
+
+
+
+    const mentionedTopicsPieChart = document.getElementById('pie-chart').getContext('2d');
+    new Chart(mentionedTopicsPieChart, {
+        type: 'doughnut',
+        data: {
+            labels: ['Drivers', 'Purchasing', 'Homeless', 'Accessibility', 'Saftey', 'Customer Service', 'Time', 'Signage', 'Cleanliness'],
+            datasets: [{
+                label: 'Mentioned Topics',
+                data: [ 13 ,  14 ,  13 ,  6 ,  23 ,  20 ,  32 ,  10 ,  31  
+            ],
+        backgroundColor: [primaryBlue, lightBlue, darkBlue, primaryGold, lightGold, darkGold, primaryRed, lightRed, darkRed],
+        hoverOffset: 4}]
+    },
+        options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+            legend: {
+                labels: {
+                    font: {
+                        size: 14
+                    }
+                },
+                display: true,
+                position: 'top',
+            },
+        },
+    }
+    })
+
+    const stackedBarChart = document.getElementById('stacked-bar-chart').getContext('2d');
+    var opinionsChart = new Chart(stackedBarChart, {
+        type: 'bar',
+        data: {
+            labels: ['Drivers', 'Purchasing', 'Homeless', 'Accessibility', 'Safety', 'Customer Service', 'Time', 'Signage', 'Cleanliness'],
+            datasets: [
+                {
+                    label: "Positive",
+                    backgroundColor: positive,
+                    data: [
+                         9 ,
+                 4 ,
+                         0 ,
+     3 ,
+     8 ,
+     8 ,
+     14 ,
+     4 ,
+     21 
+                    ]
+                },
+    {
+        label: "Mixed",
+        backgroundColor: mixed,
+        data: [
+                         0 ,
+                 4 ,
+                         1 ,
+     0 ,
+     5 ,
+     2 ,
+     3 ,
+     2 ,
+     4 
+        ]
+    },
+    {
+        label: "Negative",
+            backgroundColor: negative,
+        data: [
+                         4 ,
+                 8 ,
+                         12 ,
+     3 ,
+     10 ,
+     10 ,
+     15 ,
+     4 ,
+     6 
+
+        ]
+    }
+            ],
+
+    options: {
+
+        barValueSpacing: 20,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    min: 0,
+                }
+            }]
+        },
+
+        responsive: true,
+
+            scales: {
+            x: {
+                stacked: true,
+                    },
+            y: {
+                stacked: true,
+                    beginAtZero: true
+            }
+        }
+    }}
+    })
+
+</script>
+
+</body></html>
