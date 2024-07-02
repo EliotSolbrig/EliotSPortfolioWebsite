@@ -49,6 +49,7 @@ type Project struct {
     Description *string
     ProjectImages []*ProjectImage
     ProjectType ProjectType
+    Disabled int
 }
 
 type ProjectType struct {
