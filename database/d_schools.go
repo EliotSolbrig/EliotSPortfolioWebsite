@@ -59,7 +59,8 @@ SELECT
     A.name,
     A.grade,
     A.term,
-    A.credits
+    A.credits,
+    class_files_url
 FROM
     classes A,
     schools B
@@ -85,6 +86,7 @@ func (database *Database) GetSchoolClassesFromSchoolID(ctx context.Context, scho
             &class.Grade,
             &class.Term,
             &class.Credits,
+            &class.ClassFilesURL,
         )
         classes = append(classes, class)
     }

@@ -39,6 +39,7 @@ type Class struct {
     Grade string
     Term string
     Credits int
+    ClassFilesURL string
 }
 
 type Project struct {
