@@ -1,4 +1,5 @@
 {{ define "project" }}
+{{ if eq .Disabled 0 }}
 <div class="p-4 m-2 center row rounded-md outline outline-black w-full bg-sky-200">
     <div class="center row">
         {{ if .GithubRepoURL }}
@@ -64,4 +65,5 @@
     </div>
     {{ end }}
 </div>
+{{ end }}
 {{ end }}

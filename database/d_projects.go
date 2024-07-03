@@ -12,7 +12,8 @@ SELECT
     url,
     github_repo_url,
     desc,
-    project_type_id
+    project_type_id,
+    disabled
 FROM
     projects
 WHERE
@@ -41,6 +42,7 @@ func (database *Database) GetAllProjects(ctx context.Context, typeID int) ([]*Pr
             &project.GithubRepoURL,
             &project.Description,
             &project.ProjectType.ID,
+            &project.Disabled,
         )
         images,err := database.GetProjectImagesFromID(ctx, project.ID)
         if err != nil {
