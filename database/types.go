@@ -51,6 +51,7 @@ type Project struct {
     ProjectImages []*ProjectImage
     ProjectType ProjectType
     Disabled int
+    ListOrder int
 }
 
 type ProjectType struct {

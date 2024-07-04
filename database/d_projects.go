@@ -13,13 +13,14 @@ SELECT
     github_repo_url,
     desc,
     project_type_id,
-    disabled
+    disabled,
+    list_order
 FROM
     projects
 WHERE
    project_type_id LIKE ? 
 ORDER BY
-    id DESC
+    list_order ASC
 `
 
 func (database *Database) GetAllProjects(ctx context.Context, typeID int) ([]*Project, error) {
@@ -43,6 +44,7 @@ func (database *Database) GetAllProjects(ctx context.Context, typeID int) ([]*Pr
             &project.Description,
             &project.ProjectType.ID,
             &project.Disabled,
+            &project.ListOrder,
         )
         images,err := database.GetProjectImagesFromID(ctx, project.ID)
         if err != nil {
