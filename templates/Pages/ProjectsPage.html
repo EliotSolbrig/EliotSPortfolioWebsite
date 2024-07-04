@@ -38,6 +38,16 @@
             >
             Engineering
         </div>
+        <div
+            onclick="setProjectType(3)"
+            hx-post="/projectpage"
+            hx-include="#project-type"
+            hx-swap="innerHTML"
+            hx-target="#project-page-div"
+            class="col"
+            >
+            School
+        </div>
     </div>
     <hr/>
     {{ range .Projects }}
