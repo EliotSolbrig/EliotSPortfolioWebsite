@@ -1,69 +1,44 @@
 {{ define "project" }}
 {{ if eq .Disabled 0 }}
-<div class="p-4 m-2 center row rounded-md outline outline-black w-full bg-sky-200">
-    <div class="center row">
-        {{ if .GithubRepoURL }}
-        <div class="col">
-            {{ end }}
-            {{ if .URL }}
-            <a href="{{ .URL }}">
-                {{ end }}
-            <b>{{ .Name }}</b>
-            {{ if .URL }}
-            </a>
-                {{ end }}
-            {{ if .GithubRepoURL }}
-        </div>
-        {{ end }}
-        {{ if .GithubRepoURL }}
-        <div class="col">
-            <a href="{{ .GithubRepoURL }}">Github</a>
-        </div>
-        {{ end }}
-    </div>
-    <div class="p-2 m-1 center row">
-        {{ .Description }}
-    </div>
+<div class="project-card">
     {{ if .ProjectImages }}
-    <div class="p-1 m-1 align-middle center row">
-        {{ range .ProjectImages }}
-        <div class="center col">
-            <div class="center row">
-                <a
-                    {{ if .AltLink }}
-                        href="{{ .AltLink }}"
-                    {{ else }}
-                    {{ if eq .ImageIsVideo 0 }}
-                    href="{{ .ImageLink }}"
-                    {{ end }}
-                    {{ end }}
-                    >
-                    {{ if eq .ImageIsVideo 0 }}
-                    <img src="{{ .ImageLink }}">
-                    {{ else }}
-                    {{ if .AltLink }}
-                    <div class="h-full">
-                        <video controls>
-                            <source src="{{ .AltLink }}" type="video/mp4">
-                        </video>
-                    </div>
-                        {{ end }}
-                        {{ end }}
-                </a>
-            </div>
-        </div>
-        {{ end }}
-        <div class="center row">
-            {{ range .ProjectImages }}
-            <div class="center col">
-                {{ if .Caption }}
-                {{ .Caption }}
-                {{ end }}
-            </div>
+
+<div class="project-image-slider">
+  {{ range .ProjectImages }}
+    {{ if eq .ImageIsVideo 0 }}
+      <img src="{{ .ImageLink }}" alt="{{ $.Name }}" loading="lazy" />
+    {{ else }}
+      <video controls>
+        <source src="{{ .AltLink }}" type="video/mp4" />
+      </video>
+    {{ end }}
+  {{ end }}
+</div>
+
+
+    {{ end }}
+
+    <div class="project-content">
+        <h3>
+            {{ if .URL }}
+            <a href="{{ .URL }}">{{ .Name }}</a>
+            {{ else }}
+            {{ .Name }}
+            {{ end }}
+        </h3>
+
+        <p>{{ .Description }}</p>
+
+        <div class="project-links">
+            {{ if .URL }}
+            <a href="{{ .URL }}">Demo</a>
+            {{ end }}
+            {{ if .GithubRepoURL }}
+            <a href="{{ .GithubRepoURL }}">GitHub</a>
             {{ end }}
         </div>
     </div>
-    {{ end }}
 </div>
 {{ end }}
 {{ end }}
+
