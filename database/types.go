@@ -52,6 +52,7 @@ type Project struct {
     ProjectType ProjectType
     Disabled int
     ListOrder int
+	DescriptionHTML *string
 }
 
 type ProjectType struct {

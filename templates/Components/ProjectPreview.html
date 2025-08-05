@@ -29,8 +29,9 @@
             {{ end }}
         </h3>
 
-        <p>{{ .Description }}</p>
-
+        <div class="project-description">
+            {{ .DescriptionHTML }}
+        </div>
         <div class="project-links">
             {{ if .URL }}
             <a href="{{ .URL }}">Demo</a>
