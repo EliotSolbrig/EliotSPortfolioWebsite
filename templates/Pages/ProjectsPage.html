@@ -1,4 +1,10 @@
 {{ define "projectpage" }}
+<!-- Modal Overlay -->
+<div id="imageModal" class="modal" onclick="hideImageModal(event)">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="modalImage">
+</div>
+
     <div class="dark-bg dp-2 center row">
         <h4>Projects</h4>
     </div>
@@ -62,6 +68,19 @@
             console.log(projectTypeInput);
             projectTypeInput.value = typeID;
             console.log(projectTypeInput);
+        }
+        function showImageModal(e){
+            console.log('e: ', e);
+            var modal = document.getElementById('modalImage');
+            modal.src = e.target.src;
+            console.log('showImageModal()');
+            document.getElementById('imageModal').style.display = "block";
+        }
+        function hideImageModal(e){
+            if(e.target.id == "imageModal"
+            ){
+            document.getElementById('imageModal').style.display = "none";
+            }
         }
     </script>
 {{ end }}

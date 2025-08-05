@@ -6,11 +6,13 @@
 <div class="project-image-slider">
   {{ range .ProjectImages }}
     {{ if eq .ImageIsVideo 0 }}
-    <img title="{{.Caption }}" src="{{ .ImageLink }}" alt="{{ $.Name }}" loading="lazy" />
+    <img style="height:100%;width:auto;" title="{{.Caption }}" src="{{ .ImageLink }}" alt="{{ .AltLink }}" loading="lazy" onclick="showImageModal(event)"/>
     {{ else }}
+    <a style="text-decoration:none;" href="{{ .ImageLink }}">
     <video title="{{.Caption}}" controls>
         <source src="{{ .AltLink }}" type="video/mp4" />
       </video>
+    </a>
     {{ end }}
   {{ end }}
 </div>
