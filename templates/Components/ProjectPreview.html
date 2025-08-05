@@ -1,6 +1,6 @@
 {{ define "project" }}
 {{ if eq .Disabled 0 }}
-<div class="project-card">
+<div class="dark-bg project-card">
     {{ if .ProjectImages }}
 
 <div class="project-image-slider">
@@ -18,7 +18,7 @@
 
     {{ end }}
 
-    <div class="project-content">
+    <div class="dark-bg project-content">
         <h3>
             {{ if .URL }}
             <a href="{{ .URL }}">{{ .Name }}</a>
