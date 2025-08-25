@@ -413,3 +413,34 @@ button:hover {
   cursor: pointer;
 }
 
+.project-description-html {
+  font-size: 0.95rem;
+  color: #eee;
+  line-height: 1.6;
+  margin-top: 0.5rem;
+
+  /* Layout constraints */
+  max-height: 400px;
+  overflow: auto;
+  padding-right: 8px;
+
+  /* Optional scrollbar styles */
+  scrollbar-width: thin;
+}
+
+.project-description-html ul {
+  padding-left: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.project-description-html li {
+  margin-bottom: 0.3rem;
+}
+
+.project-description-html h2,
+.project-description-html h3 {
+  font-size: 1.1rem;
+  margin-top: 1rem;
+  color: #fff;
+}
+

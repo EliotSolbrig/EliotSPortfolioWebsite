@@ -41,7 +41,12 @@ func (router *Router) ProjectsPage(w http.ResponseWriter, r *http.Request) {
         panic(fmt.Errorf("Error getting projects in r_projects.go: %s", err))
     }
     fmt.Println("projects: ", projects)
-
+	
+	for i,tempProject := range projects {
+		if tempProject.DescriptionHTML != nil {
+		projects[i].DescriptionHTMLTemplate = template.HTML(*tempProject.DescriptionHTML)
+		}
+	}
 
     templates := append([]string{"templates/Pages/Projects.html","templates/Components/ProjectPreview.html","templates/Pages/ProjectsPage.html",},basePasefiles...)
     tmpl := template.Must(template.ParseFiles(templates...))

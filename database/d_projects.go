@@ -14,7 +14,8 @@ SELECT
     desc,
     project_type_id,
     disabled,
-    list_order
+    list_order,
+	description_html
 FROM
     projects
 WHERE
@@ -44,7 +45,8 @@ func (database *Database) GetAllProjects(ctx context.Context, typeID int) ([]*Pr
             &project.Description,
             &project.ProjectType.ID,
             &project.Disabled,
-            &project.ListOrder,
+            &project.ListOrder, 
+            &project.DescriptionHTML, 
         )
         images,err := database.GetProjectImagesFromID(ctx, project.ID)
         if err != nil {

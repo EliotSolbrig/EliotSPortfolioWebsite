@@ -29,8 +29,10 @@
             {{ end }}
         </h3>
 
-        <div class="project-description">
-            {{ .DescriptionHTML }}
+        <div class="project-description-html">
+            {{ if .DescriptionHTMLTemplate }}
+            {{ .DescriptionHTMLTemplate }}
+            {{ end }}
         </div>
         <div class="project-links">
             {{ if .URL }}
@@ -40,7 +42,7 @@
             <a href="{{ .GithubRepoURL }}">GitHub</a>
             {{ end }}
         </div>
-    </div>
+
 </div>
 {{ end }}
 {{ end }}

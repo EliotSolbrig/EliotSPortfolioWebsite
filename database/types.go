@@ -1,5 +1,9 @@
 package database
 
+import (
+	"html/template"
+)
+
 type Job struct {
     ID int
     Title string
@@ -53,6 +57,7 @@ type Project struct {
     Disabled int
     ListOrder int
 	DescriptionHTML *string
+	DescriptionHTMLTemplate template.HTML
 }
 
 type ProjectType struct {
