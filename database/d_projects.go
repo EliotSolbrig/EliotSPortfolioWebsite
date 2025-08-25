@@ -80,7 +80,7 @@ WHERE
    B.id = A.project_id AND
    B.id = ?
 ORDER BY
-    A.id ASC
+    A.id DESC
 `
 
 func (database *Database) GetProjectImagesFromID(ctx context.Context, projectID int) ([]*ProjectImage, error) {
